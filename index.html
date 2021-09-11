@@ -44,7 +44,7 @@
         <hr>
         <h4>section to create a table about fav food</h4>
         <p>In this below table I am adding about my fav food,drinks,loc where we can find them & cost to buy them </p>
-        <table style="width:100%">
+        <table style="width:20%">
             <tr>
               <th>Food/drink</th>
               <th>location</th>
@@ -66,6 +66,59 @@
                 <td>$40</td>
             </tr>
           </table>
+          <hr>
+          <h4>Code display section</h4>
+          <blockquote>
+            In graph theory, a Trémaux tree of an undirected graph G is a spanning tree of G, rooted at one of its vertices, with the property that every two adjacent vertices in G are related to each other as an ancestor and descendant in the tree.
+          </blockquote><a href="https://en.wikipedia.org/wiki/Tr%C3%A9maux_tree">link to souce code for Graphs Spanning/Cycles/Ancestor</a>
+          <pre>
+            const int INF = 1000000000;
+
+            struct Edge {
+                int w = INF, to = -1;
+                bool operator<(Edge const& other) const {
+                    return make_pair(w, to) < make_pair(other.w, other.to);
+                }
+            };
+            
+            int n;
+            vector<vector<Edge>> adj;
+            
+            void prim() {
+                int total_weight = 0;
+                vector<Edge> min_e(n);
+                min_e[0].w = 0;
+                set<Edge> q;
+                q.insert({0, 0});
+                vector<bool> selected(n, false);
+                for (int i = 0; i < n; ++i) {
+                    if (q.empty()) {
+                        cout << "No MST!" << endl;
+                        exit(0);
+                    }
+            
+                    int v = q.begin()->to;
+                    selected[v] = true;
+                    total_weight += q.begin()->w;
+                    q.erase(q.begin());
+            
+                    if (min_e[v].to != -1)
+                        cout << v << " " << min_e[v].to << endl;
+            
+                    for (Edge e : adj[v]) {
+                        if (!selected[e.to] && e.w < min_e[e.to].w) {
+                            q.erase({min_e[e.to].w, e.to});
+                            min_e[e.to] = {e.w, v};
+                            q.insert({e.w, e.to});
+                        }
+                    }
+                }
+            
+                cout << total_weight << endl;
+            }
+          </pre>
+          <a href="https://cp-algorithms.com/graph/mst_prim.html">quick link to source code</a>
+
 
     </body>
 </html>
