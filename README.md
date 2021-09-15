@@ -2,4 +2,4 @@
 Assignment 3 - Basic HTML
 
 
-[hosted at](https://44-563-webapps-f21.github.io/webapps-f21-assignment-3-SESHASAIP/)
+hosted at(https://44-563-webapps-f21.github.io/webapps-f21-assignment-3-SESHASAIP/)
